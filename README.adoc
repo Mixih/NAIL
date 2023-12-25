@@ -1,0 +1,64 @@
+= Common FPGA IP Library
+
+== Description
+
+This is a general collection of FPGA IP modules to make starting new designs easier. All
+modules come with formal specification and/or behavioural validation testbenches to ensure
+correct functionality. Designs are generally optimized for the hardware primitives found
+on modern Xilinx FPGAs (7 series and up), and use synthesis constructs that function well
+for the Vivado synthesizer.
+
+== Interfaces and standards
+
+Here is a summary of the default interfaces that are used in the IP modules. Consult
+individual IP documentation sheets for any deviations from these standards.
+
+[%autowidth]
+|===
+| Application | Interface | Notes
+
+| Streamed data           | AXI-S    | AXI-Stream, or extended AXI-Stream with backpressure feedback is acceptable.
+| Internal low-speed bus  | AXI-Lite | Wishbone may also be used.
+| Internal high-speed bus | TBD      | No IPs require a HS bus yet.
+| Audio                   | I2S      |
+|===
+
+== Requirements
+
+* Synthesis suite for hardware implementationa (e.g. Xilinx VDS).
+* Verilator for simulation testbenches and linting.
+    ** Timing testbenches have been tested in Vivado xsim.
+    ** Icarus should also work in theory.
+* SymbiYosys (SBY) and baseline Yosys install for formal property verification and model
+  check.
+* CPP 20 compiler and CMake >= 2.20 for the ipcore generators.
+
+== FAQ
+
+Q: NAIL?
+
+A: "commoN fpgA Ip Library" (yes, this is a [gratuitously constructed acronym](https://acronymify.com/))
+
+Q: So does this exist? Don't most vendor toolchains come with large amounts of included IP.
+
+A: Good question! Firstly, writing blocks of reusable IP is quite educational. Secondly,
+vendor IP often is license encumbered, and somewhat difficult to integrate. Vendor IP also
+is usually encrypted, which makes debugging design issues very difficult, and greatly
+reduces the compatibility. Finally it is quite convenient to have a suite of IP with
+copyright fully owned by a single contributor, for business purposes.
+
+
+== Licensing
+
+[IMPORTANT]
+====
+IP in this repository is licensed under the CERN-OHL-S v2. This is the hardware equivalent
+to the GNU GPL license, with corresponding strongly reciprocal terms that bind derived
+and incorporating works under the same license.
+
+If these license terms are unacceptable for any reason, a commercial-use, closed-source
+derivatives license may be negotiated by contracting 0-PID Technologies.
+====
+
+Note that 3rd proprietary components, such as vendor provided encrypted IP, need only be
+made available in the format that is usable by the tools under section 1.8 of CERN-OHL-S.
