@@ -1,0 +1,28 @@
+[tasks]
+bmc
+cover
+prove
+
+[options]
+cover:
+mode cover
+depth 30
+--
+bmc:
+mode bmc
+depth 30
+--
+prove:
+mode prove
+depth 30
+--
+
+[engines]
+smtbmc
+
+[script]
+read -formal -DINT_BAUD_GEN int_baud_gen.v
+prep -top int_baud_gen
+
+[files]
+../../hdl/util/int_baud_gen.v

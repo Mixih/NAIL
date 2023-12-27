@@ -1,0 +1,26 @@
+[tasks]
+bmc
+cover
+prove
+
+[options]
+cover:
+mode cover
+--
+prove:
+mode prove
+--
+bmc:
+mode bmc
+--
+
+[engines]
+smtbmc
+
+[script]
+read -formal mul32x32.v
+prep -top mul32x32
+
+[files]
+../../hdl/arith/mul32x32.v
+../../hdl/util/util.vh

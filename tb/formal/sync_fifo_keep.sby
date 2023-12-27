@@ -1,0 +1,29 @@
+[tasks]
+bmc
+cover
+prove
+
+[options]
+cover:
+mode cover
+depth 200
+--
+bmc:
+mode bmc
+--
+prove:
+mode prove
+--
+
+[engines]
+smtbmc
+
+[script]
+cover: read -define COVER
+read -formal -DSYNC_FIFO sync_fifo.v
+chparam -set DATA_WIDTH 8 -set FIFO_SIZE 31 -set XRUN_MODE "KEEP" sync_fifo
+prep -top sync_fifo
+
+[files]
+../../hdl/dataplane/sync_fifo.v
+../../hdl/util/util.vh

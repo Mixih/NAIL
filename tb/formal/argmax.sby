@@ -1,0 +1,29 @@
+[tasks]
+bmc
+cover
+prove
+
+[options]
+cover:
+mode cover
+depth 80
+--
+bmc:
+mode bmc
+depth 30
+--
+prove:
+mode prove
+depth 30
+--
+
+[engines]
+smtbmc
+
+[script]
+read -formal argmax.v
+prep -top argmax
+
+[files]
+../../hdl/arith/argmax.v
+../../hdl/util/util.vh

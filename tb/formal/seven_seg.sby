@@ -1,0 +1,33 @@
+[tasks]
+bmc
+cover
+prove
+
+[options]
+cover:
+mode cover
+depth 50
+--
+bmc:
+mode bmc
+depth 50
+--
+prove:
+mode prove
+depth 50
+--
+
+[engines]
+smtbmc
+
+[script]
+read -formal -DSEVEN_SEG seven_seg.v
+chparam -set ICLK_HZ 3000
+read -formal int_baud_gen.v
+prep -top seven_seg
+#clk2fflogic
+
+[files]
+../../hdl/hmi/seven_seg.v
+../../hdl/util/int_baud_gen.v
+../../hdl/util/util.vh

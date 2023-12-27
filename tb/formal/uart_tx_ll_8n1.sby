@@ -1,0 +1,36 @@
+[tasks]
+bmc
+cover
+prove
+
+[options]
+cover:
+mode cover
+depth 200
+--
+bmc:
+mode bmc
+depth 30
+--
+prove:
+mode prove
+depth 70
+--
+
+[engines]
+smtbmc
+
+[script]
+cover: read -define COVER
+read -formal -DUART_TX_LL_8N1 uart_tx_ll_8n1.v
+read -formal int_baud_gen.v
+
+cover: chparam -set ICLK_HZ 921600 uart_tx_ll_8n1
+prove: chparam -set ICLK_HZ 1000000 BAUD_RATE 100000 uart_tx_ll_8n1
+
+prep -top uart_tx_ll_8n1
+
+[files]
+../../hdl/serdes/uart_tx_ll_8n1.v
+../../hdl/util/int_baud_gen.v
+../../hdl/util/util.vh
