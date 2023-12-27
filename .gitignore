@@ -1,3 +1,5 @@
 .svlangserver/
 build/
+tb/formal/*_prove/
+tb/formal/*_cover/
 vivado/
