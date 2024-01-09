@@ -94,10 +94,8 @@ Note that closed-source 3rd-party proprietary components, such as vendor provide
 encrypted IP, need only be made available in the format that is configurable and usable by
 the synthesis tools per section 1.8 of CERN-OHL-S. (e.g. if you wish to incorporate Xilinx
 IP in any derived works, you must distribute the xci, coe, and bd files needed to
-configure and synthesize said IP).
+configure and synthesize said IP). However unencrypted and first/second party IP used in
+derived works must be delivered in RTL form.
 
-Please note that though sub-projects in this repository may be distributed under more
-permissive licenses where indicated, distributing the aggregate will apply the terms of
-the OHL-S-V2 license, as it is the most restrictive license. Verilator generated C++
-sources produced from IP in this repository are still bound by the original OHL-S-V2
-license under the derived works clause.
+Please note that Verilator generated C++ sources produced from IP in this repository are
+still bound by the original OHL-S-V2 license under the derived works clause.
