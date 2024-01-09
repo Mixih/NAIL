@@ -25,7 +25,7 @@ individual IP documentation sheets for any deviations from these standards.
 
 == Requirements
 
-* Synthesis suite for hardware implementationa (e.g. Xilinx VDS).
+* Synthesis suite for hardware implementations (e.g. Xilinx VDS).
 * Verilator for simulation testbenches and linting.
     ** Timing testbenches have been tested in Vivado xsim.
     ** Icarus should also work in theory.
@@ -33,32 +33,71 @@ individual IP documentation sheets for any deviations from these standards.
   check.
 * CPP 20 compiler and CMake >= 2.20 for the ipcore generators.
 
+== Usage
+
+Drop the entire `hdl/` folder into the design project and add all files to the design. A
+dependency resolution system and selective distribution builder will be created in the
+future to allow usage with hardware toolchains that require manual elaboration order
+specification.
+
+Formal verification can be run by entering the `tb/formal` directory and "making" the
+project using GNU make. It is heavily recommended to set the make `-j` jobs setting to the
+number of CPU cores to allow different IP modules to be verified in parallel.
+
+== Top-level directories
+
+* `doc`: Long-form test documentation.
+* `gen`: IP module configurators and generators if needed by given module.
+* `rtl`: Synthesizable RTL source files.
+* `tb`: Testbench and validation files.
+* `tools`: maintenance and utility tools for the repository.
+
+== Documentation
+
+See the `doc/` folder.
+
 == FAQ
 
 Q: NAIL?
 
-A: "commoN fpgA Ip Library" (yes, this is a [gratuitously constructed acronym](https://acronymify.com/))
+A: "commoN fpgA Ip Library" (yes, this is a link:https://acronymify.com/[gratuitously constructed acronym])
 
-Q: So does this exist? Don't most vendor toolchains come with large amounts of included IP.
+Q: So why does this exist? Don't most vendor toolchains come with large amounts of included IP.
 
 A: Good question! Firstly, writing blocks of reusable IP is quite educational. Secondly,
 vendor IP often is license encumbered, and somewhat difficult to integrate. Vendor IP also
 is usually encrypted, which makes debugging design issues very difficult, and greatly
 reduces the compatibility. Finally it is quite convenient to have a suite of IP with
-copyright fully owned by a single contributor, for business purposes.
+copyright fully owned by a single entity for commercial purposes.
 
 
 == Licensing
 
 [IMPORTANT]
 ====
-IP in this repository is licensed under the CERN-OHL-S v2. This is the hardware equivalent
-to the GNU GPL license, with corresponding strongly reciprocal terms that bind derived
-and incorporating works under the same license.
+Synthesizable IP and testbench code in this repository is licensed under the CERN-OHL-S
+v2. This is the hardware equivalent to the GNU GPL license, with corresponding strongly
+reciprocal terms that bind derived and incorporating works under the same license.
 
-If these license terms are unacceptable for any reason, a commercial-use, closed-source
-derivatives license may be negotiated by contracting 0-PID Technologies.
+If these license terms are unacceptable for any reason, a commercial-use, non-reciprocal
+license may be negotiated for each closed-source derivative project by contracting 0-PID
+Technologies.
 ====
 
-Note that 3rd proprietary components, such as vendor provided encrypted IP, need only be
-made available in the format that is usable by the tools under section 1.8 of CERN-OHL-S.
+We consider licensing to be an important part of establishing our rights to designs and
+documentation. To foster the open-hardware community while protecting our commercial
+interests, we have elected to make IP available under the strongly reciprocal CERN OHL-S
+V2 license by default. This should be sufficient to enable other open hardware and
+educational projects to incorporate these IPs.
+
+Note that closed-source 3rd-party proprietary components, such as vendor provided
+encrypted IP, need only be made available in the format that is configurable and usable by
+the synthesis tools per section 1.8 of CERN-OHL-S. (e.g. if you wish to incorporate Xilinx
+IP in any derived works, you must distribute the xci, coe, and bd files needed to
+configure and synthesize said IP).
+
+Please note that though sub-projects in this repository may be distributed under more
+permissive licenses where indicated, distributing the aggregate will apply the terms of
+the OHL-S-V2 license, as it is the most restrictive license. Verilator generated C++
+sources produced from IP in this repository are still bound by the original OHL-S-V2
+license under the derived works clause.

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023, Max Hahn
+ * SPDX-FileCopyrightText:  Copyright (C) 2023, Max Hahn
  * SPDX-License-Identifier: CERN-OHL-S-2.0
  *
  * This source describes Open Hardware and is licensed under the CERN-OHL-S v2.
@@ -13,12 +13,13 @@
  * Source location: https://github.com/Mixih/NAIL
  *
  * As per CERN-OHL-S v2 section 4, should you produce hardware based on this
- * source, you must where practicable maintain the Source Location visible in the
- * documentation for the Product or other products you make using this source.
+ * source, you must where practicable maintain the Source Location visible in
+ * the documentation for the Product or other products you make using this
+ * source.
  *
- * You should have recieved a copy of the CERN_OHL-S v2 along with this file (see
- * ${REPO_ROOT}/LICENSE.txt). If you did not recieve a copy of the aforementioned license,
- * you may obtain a copy at https://ohwr.org/cern_ohl_s_v2.txt.
+ * You should have recieved a copy of the CERN-OHL-S v2.0 license along with
+ * this file. If you did not recieve a copy of the aforementioned license, you
+ * may obtain a copy at https://ohwr.org/cern_ohl_s_v2.txt.
  */
 `timescale 1ns / 1ps
 
@@ -32,6 +33,10 @@
  * the on-time is constant per unit in the seven-segment display unit, so the on-time may
  * need to be reduced for displays with more units to maintain consistent persistence of
  * vision.
+ *
+ * The input must be a BCD encoded number, with the most significant nibble displaying in
+ * the top (largest index) of the output and least significant nibble displaying in the
+ * bottom of the output.
  *
  * Output ports:
  *   - Segments: 8 units, order {A, B, C, D, E, F, G, DP}
